@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowMouse : MonoBehaviour
 {
     public Transform playerBody;
-    private float[] verticalLimits = { -50, 25 };
+    private float[] verticalLimits = { -45, 45 };
     [SerializeField] float rotationSpeed;
     private float[] horizontalLimits = { -90, 90 };
     float verticalAngle;
@@ -28,12 +28,12 @@ public class FollowMouse : MonoBehaviour
 
     void RotateVertical()
     {
-        verticalAngle += -Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
+        verticalAngle += -Input.GetAxis("Mouse Y") * rotationSpeed;
         verticalAngle = Mathf.Clamp(verticalAngle, verticalLimits[0], verticalLimits[1]);
     }
     void RotateHorizontal()
     {
-        horizontalAngle += Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+        horizontalAngle += Input.GetAxis("Mouse X") * rotationSpeed;
         horizontalAngle = Mathf.Clamp(horizontalAngle, horizontalLimits[0], horizontalLimits[1]);
     }
 }
