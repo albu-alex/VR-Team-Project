@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     private static int objectsNr;
-    private bool shouldCollapse = false;
+    private bool shouldCollapse = true;
     [SerializeField] GameObject door;
     [SerializeField] GameObject roof;
     [SerializeField] Text textMesh;
@@ -15,7 +17,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        objectsNr = 8;
+        objectsNr =5;
         textMesh.text = "Items left:" + objectsNr;
     }
 
@@ -31,8 +33,12 @@ public class GameManager : MonoBehaviour
 
     private void collapseWall()
     {
-        float speed = -2.0f;
+        float speed = -0.5f;
         roof.transform.position += new Vector3(0, speed * Time.deltaTime, 0);
+        if (roof.transform.position.y < 10)
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 
     public void DecreaseNumber()
@@ -43,8 +49,8 @@ public class GameManager : MonoBehaviour
             SetText();
             if(objectsNr == 0)
             {
+                shouldCollapse = false;
                 door.SetActive(true);
-                shouldCollapse = true;
             }
         }
     }
