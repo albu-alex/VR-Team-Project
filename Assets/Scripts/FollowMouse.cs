@@ -7,7 +7,7 @@ public class FollowMouse : MonoBehaviour
     public Transform playerBody;
     private float[] verticalLimits = { -45, 45 };
     [SerializeField] float rotationSpeed;
-    private float[] horizontalLimits = { -180, 180 };
+    private float[] horizontalLimits = { -360, 360 };
     float verticalAngle;
     float horizontalAngle;
     // Start is called before the first frame update

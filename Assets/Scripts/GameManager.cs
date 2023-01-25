@@ -7,6 +7,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public Camera camera1;
+    public Camera camera2;
+    public Camera camera3;
+    public Camera camera4;
+
+    private Camera[] cameras;
     private static int objectsNr;
     private bool shouldCollapse = true;
     [SerializeField] GameObject door;
@@ -19,6 +25,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         objectsNr =5;
         textMesh.text = "Items left:" + objectsNr;
+        cameras = new Camera[] { camera1, camera2, camera3, camera4 };
     }
 
     private void Start()
@@ -55,11 +62,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void SwitchToCamera(int index)
+    {
+        // Deactivate all cameras
+        for (int i = 0; i < cameras.Length; i++)
+        {
+            cameras[i].gameObject.SetActive(false);
+        }
+
+        // Activate the second camera
+        cameras[index].gameObject.SetActive(true);
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (!shouldCollapse) 
-        { 
+        {
+            float distance = Vector3.Distance(camera1.transform.position, door.transform.position);
+            if (distance < 10.0)
+            {
+                SwitchToCamera(1);
+                textMesh.text = "";
+                textMesh.text = "Rob Green Bought Yahoo";
+            }
             return; 
         }
         collapseWall();

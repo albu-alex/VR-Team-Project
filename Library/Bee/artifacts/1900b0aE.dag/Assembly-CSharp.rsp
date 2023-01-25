@@ -355,6 +355,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/CameraCollision.cs"
 "Assets/Scripts/Crouch.cs"
+"Assets/Scripts/DiscardMenuScene.cs"
 "Assets/Scripts/FollowMouse.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/PlayerController.cs"
