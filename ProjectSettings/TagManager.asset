@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Bear
   - Roof
+  - Red
+  - Green
+  - Yellow
+  - Blue
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private static int objectsNr;
     private bool shouldCollapse = true;
     [SerializeField] GameObject door;
+    [SerializeField] GameObject door2;
+    [SerializeField] GameObject wall3;
     [SerializeField] GameObject roof;
     [SerializeField] Text textMesh;
 
@@ -23,7 +25,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        objectsNr =5;
+        objectsNr = 3;
         textMesh.text = "Items left:" + objectsNr;
         cameras = new Camera[] { camera1, camera2, camera3, camera4 };
     }
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         door.SetActive(false);
+        door2.SetActive(true);
     }
 
     private void SetText()
@@ -70,7 +73,7 @@ public class GameManager : MonoBehaviour
             cameras[i].gameObject.SetActive(false);
         }
 
-        // Activate the second camera
+        // Activate camera
         cameras[index].gameObject.SetActive(true);
     }
 
@@ -80,11 +83,22 @@ public class GameManager : MonoBehaviour
         if (!shouldCollapse) 
         {
             float distance = Vector3.Distance(camera1.transform.position, door.transform.position);
-            if (distance < 10.0)
+            if (distance < 10.0 && camera1.gameObject.activeSelf)
             {
                 SwitchToCamera(1);
                 textMesh.text = "";
                 textMesh.text = "Rob Green Bought Yahoo";
+            }
+            float distance2 = Vector3.Distance(camera2.transform.position, door2.transform.position);
+            if (distance2 < 10.0 && camera2.gameObject.activeSelf)
+            {
+                SwitchToCamera(2);
+                textMesh.text = "";
+            }
+            float distance3 = Vector3.Distance(camera3.transform.position, wall3.transform.position);
+            if (distance3 < 10.0 && camera3.gameObject.activeSelf)
+            {
+                SwitchToCamera(3);
             }
             return; 
         }
