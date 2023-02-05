@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bear
+  - Roof
+  - Red
+  - Green
+  - Yellow
+  - Blue
   layers:
   - Default
   - TransparentFX
